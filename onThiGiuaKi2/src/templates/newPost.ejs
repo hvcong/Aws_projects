@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thêm mới bài báo</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+
+    <style>
+      .container {
+        width: 100%;
+      }
+      .form {
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+      }
+      .form-wrap {
+        flex: 1;
+        padding: 24px;
+      }
+      .text-error {
+        color: red;
+        font-size: small;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <form
+        class="form"
+        id="form"
+        action="/new"
+        method="post"
+        enctype="multipart/form-data"
+      >
+        <div class="form-wrap">
+          <div class="form-group">
+            <label for="name">Tên bài báo</label>
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              name="name"
+              placeholder="Tên bài báo"
+            />
+            <p class="text-error"></p>
+          </div>
+          <div class="form-group">
+            <label for="author">Tên nhóm tác giả</label>
+            <input
+              type="text"
+              class="form-control"
+              id="author"
+              name="author"
+              placeholder="Tên nhóm tác giả"
+            />
+            <p class="text-error"></p>
+          </div>
+          <div class="form-group">
+            <label for="ismb">Chỉ số ismb</label>
+            <input
+              type="text"
+              class="form-control"
+              id="ismb"
+              name="ismb"
+              placeholder="Chỉ số ismb"
+            />
+            <p class="text-error"></p>
+          </div>
+        </div>
+
+        <div class="form-wrap">
+          <div class="form-group">
+            <label for="pages">Số trang</label>
+            <input
+              type="number"
+              class="form-control"
+              id="pages"
+              name="pages"
+              placeholder="Số trang"
+            />
+            <p class="text-error"></p>
+          </div>
+          <div class="form-group">
+            <label for="year">Năm xuất bản</label>
+            <input
+              type="number"
+              class="form-control"
+              id="year"
+              name="year"
+              placeholder="Năm xuất bản"
+            />
+            <p class="text-error"></p>
+          </div>
+        </div>
+      </form>
+      <button type="button" id="add-btn" class="btn btn-primary">
+        Thêm mới
+      </button>
+    </div>
+  </body>
+  <script>
+    const addBtn = document.getElementById("add-btn");
+
+    function setErrorMessage(element, message) {
+      let parent = element.parentElement;
+      let errMessage = parent.querySelector(".text-error");
+      errMessage.innerText = message;
+    }
+
+    addBtn.addEventListener("click", () => {
+      const name = document.getElementById("name");
+      const author = document.getElementById("author");
+      const ismb = document.getElementById("ismb");
+      const pages = document.getElementById("pages");
+      const year = document.getElementById("year");
+      let isSubmit = true;
+
+      if (name.value == "") {
+        setErrorMessage(name, "Tên không hợp lệ vui lòng nhập lại");
+        isSubmit = false;
+      }
+      if (author.value == "") {
+        setErrorMessage(author, "Tác giả không hợp lệ");
+        isSubmit = false;
+      }
+      if (ismb.value == "") {
+        setErrorMessage(ismb, "Chỉ số ismb không hợp lệ");
+        isSubmit = false;
+      }
+      if (pages.value == "" || pages.value <= 0) {
+        setErrorMessage(pages, "Số trang không hợp lệ");
+        isSubmit = false;
+      }
+      if (year.value == "" || year.value <= 0) {
+        setErrorMessage(year, "Số năm xuất bản không hợp lệ");
+        isSubmit = false;
+      }
+
+      if (isSubmit) {
+        document.getElementById("form").submit();
+      }
+    });
+  </script>
+</html>

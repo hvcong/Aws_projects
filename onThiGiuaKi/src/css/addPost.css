@@ -1,0 +1,45 @@
+body {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    border: 1px solid #ccc;
+    justify-content: center;
+    align-items: center;
+
+}
+
+h1 {
+}
+
+.inputgroup {
+    display: flex;
+    width: 400px;
+    padding: 12px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+input {
+    font-size: 18px;
+    flex: 1;
+}
+
+
+.label {
+    display: block;
+    width: 80px;
+}
+
+.text__err {
+    color: red;
+    font-size: small;
+    
+}

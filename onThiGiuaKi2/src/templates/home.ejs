@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Post Home</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+
+    <style>
+      .container {
+      }
+      .publisher {
+        color: red;
+      }
+      .title {
+        display: block;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h3 class="publisher">Nha xuat ban</h3>
+      <h1 class="title">Danh mục bài báo</h1>
+      <div class="btn__container">
+        <form action="/new" method="get">
+          <button type="submit">Thêm mới bài báo</button>
+        </form>
+      </div>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">STT</th>
+            <th scope="col">Tên bài báo</th>
+            <th scope="col">Tên nhóm tác giả</th>
+            <th scope="col">Chỉ số isbn</th>
+            <th scope="col">Số trang</th>
+            <th scope="col">Năm xuất bản</th>
+            <th scope="col">Thao tac</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(int i=0; i<items.length; i++) { %>
+              <tr>
+              <th scope="row"><%=i + 1  %></th>
+              <td><%= items[i].name %></td>
+              <td><%= items[i].author %></td>
+              <td><%= items[i].ismb %></td>
+              <td><%= items[i].pages %></td>
+              <td><%= items[i].year %></td>
+              <td>
+                <form action="/delete" method="post" enctype="multipart/form-data" >
+            <th scope="col">Năm xuất bản</th>
+                  <input type="hidden" name="id" value="<%=items[i].id %>">
+                  <button type="submit" id="add-btn" class="btn btn-primary">
+                    Xoa
+                  </button>
+                </form>
+              </td>
+            </tr>
+            <%} %>
+            
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

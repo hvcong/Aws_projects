@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link rel="stylesheet" href="home.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h4>Nha xuat ban Le Hong Phong</h4>
+        <h1 class="title">Danh muc bai bao</h1>
+      </div>
+
+      <div class="body">
+        <form action="/add">
+          <button class="btn__add" type="submit">Thêm mới bài báo</button>
+        </form>
+            <table class="table">
+                <tr>
+            <th>STT</th>
+            <th>Tên bài báo</th>
+            <th>Tên tác giả</th>
+            <th>Chỉ số ISBM</th>
+            <th>Số trang</th>
+            <th>Năm xuất bản</th>
+            <th>Lựa chọn</th>
+        </tr>
+        <% for(let i = 0; i<data.length; i++) {%>
+              <tr>
+                <td><%=i%></td>
+            <td><%=data[i].name %></td>
+            <td><%=data[i].author %></td>
+            <td><%=data[i].ISMB %></td>
+            <td><%=data[i].pages %></td>
+            <td><%=data[i].year %></td>
+            <td>
+              <form id="formId" action="/delete" method="POST" enctype="multipart/form-data">
+                <input type="hidden"  name="id" value="<%=data[i].id %>" />
+                <div class="btn__group">
+                  <button class="btn__delete" type="submit">Xóa</button>
+                </div> 
+            </form>
+            </td>
+          </tr>
+            <% } %>
+        </table>
+    </div>
+    </div>
+  </body>
+  <script>
+   
+</script>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add new Post</title>
+    <link rel="stylesheet" href="addPost.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Thêm mới một bài báo</h1>
+      <form action="/add" method="POST" id="form" enctype="multipart/form-data">
+        <div class="text__err" id="text__err"></div>
+        <div class="inputgroup">
+          <span class="label">Name</span>
+          <input type="text" name="name" id="name" />
+        </div>
+        <div class="inputgroup">
+          <span class="label">Author</span>
+          <input type="text" name="author" id="author" />
+        </div>
+        <div class="inputgroup">
+          <span class="label">ismb</span>
+          <input type="text" name="ISMB" id="ismb" />
+        </div>
+        <div class="inputgroup">
+          <span class="label">pages</span>
+          <input type="number" name="pages" id="pages" />
+        </div>
+        <div class="inputgroup">
+          <span class="label">year</span>
+          <input type="number" name="year" id="year" />
+        </div>
+      </form>
+      <div class="inputgroup">
+        <button id="submit">Them moi</button>
+      </div>
+    </div>
+  </body>
+  <script>
+    const submit = document.getElementById("submit");
+    const form = document.getElementById("form");
+    const textErr = document.getElementById("text__err");
+    const name = document.getElementById("name");
+    const author = document.getElementById("author");
+    const pages = document.getElementById("pages");
+    const ismb = document.getElementById("ismb");
+    const year = document.getElementById("year");
+
+    submit.addEventListener("click", () => {
+      if (name.value == "") {
+        textErr.innerText = "Tên không hợp lệ, vui lòng nhập lại";
+      } else if (author.value == "") {
+        textErr.innerText = "Tên tác giả hợp lệ, vui lòng nhập lại";
+      } else if (ismb.value == "") {
+        textErr.innerText = "Chỉ số ismb không hợp lệ, vui lòng nhập lại";
+      } else if (pages.value == "") {
+        textErr.innerText = "Số trang không hợp lệ, vui lòng nhập lại";
+      } else if (year.value == "") {
+        textErr.innerText = "Số năm hợp lệ, vui lòng nhập lại";
+      } else {
+        textErr.innerText = "";
+        form.submit();
+      }
+    });
+  </script>
+</html>
