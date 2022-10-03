@@ -47,25 +47,25 @@
           </tr>
         </thead>
         <tbody>
-          <% for(int i=0; i<items.length; i++) { %>
+          <%for(let i=0; i<data.length; i++) { %>
               <tr>
               <th scope="row"><%=i + 1  %></th>
-              <td><%= items[i].name %></td>
-              <td><%= items[i].author %></td>
-              <td><%= items[i].ismb %></td>
-              <td><%= items[i].pages %></td>
-              <td><%= items[i].year %></td>
+              <td><%=data[i].name %></td>
+              <td><%=data[i].author %></td>
+              <td><%=data[i].ismb %></td>
+              <td><%=data[i].pages %></td>
+              <td><%=data[i].year %></td>
               <td>
                 <form action="/delete" method="post" enctype="multipart/form-data" >
             <th scope="col">Năm xuất bản</th>
-                  <input type="hidden" name="id" value="<%=items[i].id %>">
+                  <input type="hidden" name="id" value="<%=data[i].id %>">
                   <button type="submit" id="add-btn" class="btn btn-primary">
                     Xoa
                   </button>
                 </form>
               </td>
             </tr>
-            <%} %>
+            <% } %>
             
         </tbody>
       </table>

@@ -6,7 +6,6 @@ require("dotenv").config({
   path: __dirname + "/.env",
 });
 const AWS = require("aws-sdk");
-const { render } = require("ejs");
 const app = express();
 
 AWS.config.update({
@@ -26,8 +25,9 @@ app.get("/new", (req, res) => {
   return res.render("newPost");
 });
 
-app.post("/new", (req, res) => {
+app.post("/new", convertFormToJson.fields([]), (req, res) => {
   const obj = req.body;
+  console.log(req.body);
 
   const params = {
     TableName,
@@ -39,7 +39,9 @@ app.post("/new", (req, res) => {
 
   docClient.put(params, (err, data) => {
     if (err) {
-      return res.send("");
+      return res.send("internal server error");
+    } else {
+      return res.redirect("/");
     }
   });
 });
@@ -55,12 +57,8 @@ app.get("/", (req, res) => {
       return res.send("internal server error");
     }
 
-    return res.render("home", {
-      items: data.Items,
-    });
+    return res.render("home", { data: data.Items ? data.Items : [] });
   });
-
-  return res.render("home");
 });
 
 app.listen(3000, () => {
